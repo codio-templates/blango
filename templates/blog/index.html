@@ -20,8 +20,26 @@
     </div>
 </nav>
 {% extends "base.html" %}
+{% load blog_extras %}
 {% block content %}
 
+    <h2>Blog Posts</h2>
+    {% for post in posts %}
+    {% row "border-bottom" %}
+        {% col "border-bottom" %}<!--<div class="col">-->
+            <h3>{{ post.title }}</h3>
+            {% include "blog/post-byline.html" %}
+            <p>{{ post.summary }}</p>
+            <p>
+                ({{ post.content|wordcount }} words)
+                <a href="{% url "blog-post-detail" post.slug %}">Read More</a>
+            </p>
+        </div>
+        {% endcol %}
+    {% endrow %}
+    {% endfor %}
+
+<!-- 
 <h2>Blog Posts</h2>
     {% for post in posts %}
     <div class="row">
@@ -54,11 +72,11 @@
     </div>
     {% endfor %}
     
-<!--Custom filters-->
+
 {% load blog_extras %}
 <small>By {{ post.author|author_details }} <!-- existing line -->
 
-
+-->
 <div class="alert alert-success" role="alert">
   A simple success alert—check it out!
 </div>
@@ -142,7 +160,6 @@
     <div class="col-xs-12 col-sm-2 col-md-2 bg-danger">Column 2</div>
     <div class="col bg-success">Column 3</div>
 </div>
-
 
 
 {% endblock %}
