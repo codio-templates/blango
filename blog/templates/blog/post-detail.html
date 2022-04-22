@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load blog_extras cache %}
+{% block content %}
+<h2>{{ post.title }}</h2>
+{% row %}
+    <div class="col">
+        {% include "blog/post-byline.html" %}
+    </div>
+{% endrow %}
+{% row %}
+    <div class="col">
+        {{ post.content|safe }}
+    </div>
+{% endrow %}
+{% row %}
+    {% if post.author.profile %}
+        {% row %}
+            {% col %}
+                <h4>About the author</h4>
+                <p>{{ post.author.profile.bio }}</p>
+            {% endcol %}
+        {% endrow %}
+    {% endif %}
+    {% include "blog/post-comments.html" %}
+{% endrow %}
+{% row %}
+    {% col %}
+        {% cache 3600 recent_posts post %}
+            {% recent_posts post %}
+        {% endcache %}
+    {% endcol %}
+{% endrow %}
+{% endblock %}

@@ -1,0 +1,22 @@
+
+<!-- Added to "base.html" -->
+{% extends "base.html" %}
+<!-- Load custom library : blog_extras.py -->
+{% load blog_extras %}
+{% block content %}
+    <h2>Blog Posts</h2>
+    {% for post in posts %}
+    {% row "border-bottom" %}
+        {% col %}
+            <h3>{{ post.title }}</h3>
+            {% include "blog/post-byline.html" %}
+            <p>{{ post.summary }}</p>
+            <p>
+                ({{ post.content|wordcount }} words)
+                <a href="{% url "blog-post-detail" post.slug %}">Read More</a
+            </p>
+        {% endcol %}
+    {% endrow %}
+    {% endfor %}
+{% endblock %}
+<!-- Code here : Inside the block -->
