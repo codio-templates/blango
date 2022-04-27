@@ -1,0 +1,3 @@
+[console_scripts]
+django-cadmin = configurations.management:execute_from_command_line
+
