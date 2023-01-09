@@ -9,6 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+from django.contrib.auth.hashers import Argon2PasswordHasher
+from django.contrib.auth.hashers import PBKDF2PasswordHasher
+from django.contrib.auth.hashers import PBKDF2SHA1PasswordHasher
+from django.contrib.auth.hashers import BCryptSHA256PasswordHasher
 import os
 from pathlib import Path
 from configurations import Configuration
@@ -180,7 +184,12 @@ class Dev(Configuration):
         "level": "DEBUG",
     },
 }
-
+    '''PASSWORD_HASHERS = [
+        'django.contrib.auth.hashers.Argon2PasswordHasher',
+        'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+        'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+        'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    ]'''
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
