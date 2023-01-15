@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from blog.models import Post
 import logging
 
-ser_model = get_user_model()
+user_model = get_user_model()
 register = template.Library()
 logger = logging.getLogger(__name__)
 
