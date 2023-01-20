@@ -51,18 +51,17 @@ class Dev(Configuration):
         "django.contrib.contenttypes",
         "django.contrib.sessions",
         "django.contrib.messages",
-        "django.contrib.sites"
+        "django.contrib.sites",
         "django.contrib.staticfiles",
         "blango_auth",
         "blog",
         "crispy_forms",
         "crispy_bootstrap5",
         "debug_toolbar",
-	"allauth",
-	"allauth.account",
-	"allauth.socialaccount",
-	"allauth.socialaccount.providers.google",
-
+        "allauth",
+        "allauth.account",
+        "allauth.socialaccount",
+        "allauth.socialaccount.providers.google",
     ]
 
     MIDDLEWARE = [
