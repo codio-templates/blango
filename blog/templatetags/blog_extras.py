@@ -15,8 +15,6 @@ from django.utils.html import format_html
 # format_html works similarly to the built in str.format method,
 # except each argument is automatically escaped before being interpolated.
 
-# we don’t need to pass in any variables /// check filter
-# although we could pass in arbitrary variables too
 @register.simple_tag(name="row")
 def row(extra_classes=""):
     return format_html('<div class="row {}">', extra_classes)
@@ -34,7 +32,8 @@ def col(extra_classes=""):
 def endcol():
     return format_html("</div>")
 
-
+# we don’t need to pass in any variables /// check filter
+# although we could pass in arbitrary variables too
 @register.simple_tag(takes_context=True)
 def author_details_tag(context):
     request = context["request"]
