@@ -15,31 +15,11 @@ from django.utils.html import format_html
 # format_html works similarly to the built in str.format method,
 # except each argument is automatically escaped before being interpolated.
 
-@register.simple_tag(name="row")
-def row(extra_classes=""):
-    return format_html('<div class="row {}">', extra_classes)
-    
-@register.simple_tag
-def endrow():
-    return format_html("</div>")
-
-@register.simple_tag
-def col(extra_classes=""):
-    return format_html('<div class="col {}">', extra_classes)
-
-
-@register.simple_tag
-def endcol():
-    return format_html("</div>")
-
-# we don’t need to pass in any variables /// check filter
-# although we could pass in arbitrary variables too
-@register.simple_tag(takes_context=True)
-def author_details_tag(context):
-    request = context["request"]
-    current_user = request.user
-    post = context["post"]
-    author = post.author
+@register.filter
+def author_details(author, current_user):
+    if not isinstance(author, user_model):
+        # return empty string as safe default
+        return ""
 
     if author == current_user:
         return format_html("<strong>me</strong>")
@@ -56,4 +36,21 @@ def author_details_tag(context):
         prefix = ""
         suffix = ""
 
-    return format_html("{}{}{}", prefix, name, suffix)
+    return format_html('{}{}{}', prefix, name, suffix)
+
+@register.simple_tag(name="row")
+def row(extra_classes=""):
+    return format_html('<div class="row {}">', extra_classes)
+    
+@register.simple_tag
+def endrow():
+    return format_html("</div>")
+
+@register.simple_tag
+def col(extra_classes=""):
+    return format_html('<div class="col {}">', extra_classes)
+
+
+@register.simple_tag
+def endcol():
+    return format_html("</div>")
