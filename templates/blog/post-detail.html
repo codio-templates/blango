@@ -12,4 +12,11 @@
         {{ post.content|safe }}
     </div>
 {% endrow %}
+<br>
+<!-- existing code here -->
+{% row %}
+    {% col %}
+        {% recent_posts post %}
+    {% endcol %}
+{% endrow %}
 {% endblock %}
