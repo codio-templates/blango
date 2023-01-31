@@ -9,7 +9,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 
 class Tag(models.Model):
     value = models.TextField(max_length=100)
-
+    #posts = tags fix me
     def __str__(self):
         return self.value
 
