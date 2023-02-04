@@ -1,4 +1,4 @@
-from blog.models import Post
+from blog.models import Post , Comment 
 
 from django.contrib.auth import get_user_model
 user_model = get_user_model()
@@ -58,20 +58,16 @@ def endcol():
     return format_html("</div>")
 
 
-
 @register.inclusion_tag("blog/post-list.html")
 def recent_posts(post):
     posts = Post.objects.exclude(pk=post.pk)[:5]
     return {"title": "Recent Posts", "posts": posts}
 
 
-#implement @5
-# @register.inclusion_tag("comments.html")
-# def comments_for_thing(thing):
-#     # Question 4: Implement code to render the comments for the Thing object below.
-#     # Sort the comments alphabetically by their content when fetching.
-#     comments = Comment.objects.filter(object_id = thing.id).order_by('content')
-#     return {"title": "Recent comments", "comments": comments}
-    
+@register.inclusion_tag("blog/comments.html")
+def comments_for_thing(thing):
+    comments = Comment.objects.filter(object_id = thing.id).order_by('content')
+    return {"title": "Recent comments", "comments": comments}
+
 
 
