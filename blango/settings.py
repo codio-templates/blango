@@ -36,7 +36,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 
-# Application definition
+Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
