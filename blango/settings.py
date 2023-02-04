@@ -25,7 +25,10 @@ class Dev(Configuration):
             "rest_framework.authentication.BasicAuthentication",
             "rest_framework.authentication.SessionAuthentication",
             "rest_framework.authentication.TokenAuthentication",
-        ]
+        ],
+				"DEFAULT_PERMISSION_CLASSES": [
+            "rest_framework.permissions.IsAuthenticated"
+        ],
     }
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
