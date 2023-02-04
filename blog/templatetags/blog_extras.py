@@ -63,3 +63,15 @@ def endcol():
 def recent_posts(post):
     posts = Post.objects.exclude(pk=post.pk)[:5]
     return {"title": "Recent Posts", "posts": posts}
+
+
+#implement this
+# @register.inclusion_tag("templatetags/question4.html")
+# def comments_for_thing(thing):
+#     # Question 4: Implement code to render the comments for the Thing object below.
+#     # Sort the comments alphabetically by their content when fetching.
+#     comments = Comment.objects.exclude(pk=thing.pk).order_by(CharField('content').lower())
+#     return {"title": "Recent comments", "comments": comments}
+    
+
+
