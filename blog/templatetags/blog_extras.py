@@ -65,12 +65,12 @@ def recent_posts(post):
     return {"title": "Recent Posts", "posts": posts}
 
 
-#implement this
-# @register.inclusion_tag("templatetags/question4.html")
+#implement @5
+# @register.inclusion_tag("comments.html")
 # def comments_for_thing(thing):
 #     # Question 4: Implement code to render the comments for the Thing object below.
 #     # Sort the comments alphabetically by their content when fetching.
-#     comments = Comment.objects.exclude(pk=thing.pk).order_by(CharField('content').lower())
+#     comments = Comment.objects.filter(object_id = thing.id).order_by('content')
 #     return {"title": "Recent comments", "comments": comments}
     
 
