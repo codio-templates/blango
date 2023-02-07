@@ -1,0 +1,35 @@
+App Hosting Service Intro
+You’ve probably heard of an app hosting service before, many different vendors have them, each with their own special name: AWS has Elastic Beanstalk, Google Cloud has App Engine,
+Azure’s is App Service and there’s also Heroku, along with many more. While the nuances of their configuration differ,
+at a high level they behave the same. The vendor provides a tool (usually command-line based) that you run to upload your code to their platform. 
+There might be a web-UI to configure environment variables, and the vendor might also provide load balancing services or other extra monitoring tools.
+You’ll probably have to use the vendor’s database (and other) services, which might cost extra.
+Virtual Servers Intro
+
+* Provide extra tools like monitoring and load balancing
+* Graphical configuration tools
+* Easier to scale if needed
+
+A virtual server, or virtual private server, is a cloud-hosted virtual server which you have full access to. It’s like a computer,
+hosted somewhere, that you can log into and run whatever you like on. You’ll need to configure all the services that you need including web and application servers,
+databases and so on. Security is also your responsibility, so things like firewalls, OS updates and patches need to be managed. 
+You get to decide how your application is uploaded and updated on the server, 
+which gives you more flexibility but can be a little more difficult – there’s no vendor-provided command to do it all. AWS, 
+Google Cloud and Azure all have virtual server offerings, plus there are a plethora of other providers.
+
+* Cost - virtual servers tend to be less expensive due to the user having to do all the work themselves.
+* Flexibility - users can configure the server the way they want instead of using vendor specific software.
+* Data persistence - virtual servers give users direct access to the file system, which makes data persistence easier.
+* Standardization - the processing of setting up and maintaining a virtual sever is very similar across vendors.
+
+
+- Cost
+- Ease of Setup
+- Scaling
+- Data Persistence and System Services
+
+
+There’s no one-size-fits-all approach to hosting your Django application. If you’re hosting a single Django application with no extra services, 
+and are happy to use vendor provide databases and data stores, then an app hosting service might be the best approach. Otherwise, 
+if you’re looking to save costs and are happy with server administration duties then a virtual server could be the want. 
+Either way, this introduction should have given you some extra context in which to make your decision.
