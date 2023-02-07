@@ -5,6 +5,10 @@ from django.utils import timezone
 import logging
 logger = logging.getLogger(__name__)
 
+
+# from django.views.decorators.cache import cache_page
+# from django.views.decorators.vary import vary_on_cookie
+
 # Create your views here.
 
 from blog.models import Post
@@ -16,6 +20,8 @@ from blog.forms import CommentForm
 def components(request):
     return render(request, "blog/components.html")
 
+# @cache_page(300)
+# @vary_on_cookie
 def index(request):
     posts = Post.objects.filter(published_at__lte=timezone.now())
     logger.debug("Got %d posts", len(posts))
