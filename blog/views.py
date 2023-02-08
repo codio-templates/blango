@@ -23,7 +23,12 @@ def components(request):
 # @cache_page(300)
 # @vary_on_cookie
 def index(request):
-    posts = Post.objects.filter(published_at__lte=timezone.now())
+    posts = (
+    Post.objects.filter(published_at__lte=timezone.now())
+    .select_related("author")
+    .only("title", "summary", "content", "author", "published_at", "slug")
+    # .defer("modified_at","created_at","tags","comments")
+    )
     logger.debug("Got %d posts", len(posts))
     return render(request, "blog/index.html" , {"posts": posts})
 
@@ -50,3 +55,8 @@ def post_detail(request, slug):
     return render(
         request, "blog/post-detail.html", {"post": post, "comment_form": comment_form}
     )
+
+
+def get_ip(request):
+  from django.http import HttpResponse
+  return HttpResponse(request.META['REMOTE_ADDR'])

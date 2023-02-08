@@ -16,6 +16,7 @@ django-extensions
 django-taggit
 
 django[argon2]
+django-debug-toolbar
 
 
 # If you want to use MySQL, and are not running on PythonAnywhere,

@@ -49,6 +49,7 @@ class Dev(Configuration):
       'blog',
       'crispy_forms',
       'crispy_bootstrap5',
+      'debug_toolbar',
       
   ]
 
@@ -56,6 +57,8 @@ class Dev(Configuration):
   CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
   MIDDLEWARE = [
+    #   The order of MIDDLEWARE is important. You should include the Debug Toolbar middleware as early as possible in the list. However, it must come after any other middleware that encodes the response’s content, such as GZipMiddleware
+      'debug_toolbar.middleware.DebugToolbarMiddleware',
       'django.middleware.security.SecurityMiddleware',
       'django.contrib.sessions.middleware.SessionMiddleware',
       'django.middleware.common.CommonMiddleware',
@@ -63,6 +66,7 @@ class Dev(Configuration):
       'django.contrib.auth.middleware.AuthenticationMiddleware',
       'django.contrib.messages.middleware.MessageMiddleware',
       #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+      
   ]
 
 
@@ -166,8 +170,11 @@ class Dev(Configuration):
     "root": {
         "handlers": ["console"],
         "level": "DEBUG",
-    },
-}
+    },}
+
+  
+  
+  INTERNAL_IPS = ["192.168.10.93"]
 
   # Internationalization
   # https://docs.djangoproject.com/en/3.2/topics/i18n/
