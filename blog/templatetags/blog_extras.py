@@ -70,6 +70,8 @@ def recent_posts(post):
 @register.inclusion_tag("blog/comments.html")
 def comments_for_thing(thing):
     comments = Comment.objects.filter(object_id = thing.id).order_by('content')
+    # comments = Comment.objects.filter((object_id = thing.id) & (content_type = 'blog | post')).order_by('content')
+    
     return {"title": "Recent comments", "comments": comments}
 
 

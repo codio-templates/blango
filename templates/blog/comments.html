@@ -1,5 +1,6 @@
 <ul>
     {% for comment in comments %}
-        <li>{{ comment.content }}</li>
+        <li>{{ comment.content }}    type : {{ comment.content_type }} 
+            </li> 
     {% endfor %}
 </ul>

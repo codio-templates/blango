@@ -14,7 +14,7 @@
     </div>
 {% endrow %}
 <br>
-<h2>Comments</h2>
+<h2>all Comments</h2>
     <div>
         {% comments_for_thing post %}
     </div>
@@ -22,6 +22,14 @@
 
 {% include "blog/post-comments.html" %}
 <br>
+{% if post.author.profile %}
+    {% row %}
+        {% col %}
+            <h4>About the author</h4>
+            <p>{{ post.author.profile.bio }}</p>
+        {% endcol %}
+    {% endrow %}
+{% endif %}
 <!-- existing code here -->
 {% row %}
     {% col %}
