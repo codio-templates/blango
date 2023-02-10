@@ -22,6 +22,8 @@ django[argon2]
 django-debug-toolbar
 
 
+django-registration
+
 # If you want to use MySQL, and are not running on PythonAnywhere,
 # uncomment the following line you might need to install pre-requisite
 # libraries before mysqlclient will work - instructions are at
