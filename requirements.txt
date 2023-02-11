@@ -21,6 +21,7 @@ dj-database-url
 django[argon2]
 django-debug-toolbar
 
+django-allauth
 
 django-registration
 

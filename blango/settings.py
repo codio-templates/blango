@@ -51,7 +51,11 @@ class Dev(Configuration):
       'crispy_forms',
       'crispy_bootstrap5',
       'debug_toolbar',
-      
+      'django.contrib.sites',
+      'allauth',
+      'allauth.account',
+      'allauth.socialaccount',
+      'allauth.socialaccount.providers.google',
 
       
   ]
@@ -63,6 +67,13 @@ class Dev(Configuration):
 
   CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
   CRISPY_TEMPLATE_PACK = 'bootstrap5'
+  #social Auth settings
+  SITE_ID = 1
+  ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+  ACCOUNT_EMAIL_REQUIRED = True
+  ACCOUNT_USERNAME_REQUIRED = False
+  ACCOUNT_AUTHENTICATION_METHOD = "email"
+
 
   MIDDLEWARE = [
     #   The order of MIDDLEWARE is important. You should include the Debug Toolbar middleware as early as possible in the list. However, it must come after any other middleware that encodes the response’s content, such as GZipMiddleware
