@@ -47,6 +47,7 @@ urlpatterns = [
     
     path("accounts/", include("django_registration.backends.activation.urls")),
     #path("accounts/", include("django_registration.backends.one_step.urls")),
+    path("api/v1/", include("blog.api_urls")),
     
 ]
 
