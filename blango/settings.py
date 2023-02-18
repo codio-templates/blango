@@ -56,8 +56,10 @@ class Dev(Configuration):
       'allauth.account',
       'allauth.socialaccount',
       'allauth.socialaccount.providers.google',
+      'drf_yasg',
       'rest_framework',
       'rest_framework.authtoken',
+      
 
       
   ]
@@ -72,6 +74,12 @@ class Dev(Configuration):
         "rest_framework.authentication.TokenAuthentication",
     ],
 }
+  SWAGGER_SETTINGS = {
+        "SECURITY_DEFINITIONS": {
+            "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+            "Basic": {"type": "basic"},
+        }
+    }
 
   AUTH_USER_MODEL = "blango_auth.User"
   EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
