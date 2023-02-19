@@ -41,7 +41,14 @@ class PostApiTestCase(TestCase):
 
         # let us look up the post info by ID
         self.post_lookup = {p.id: p for p in posts}
+        
+#         self.u1 = get_user_model().objects.create_user(
+#             username="test", password="password"
+#         )
+#         self.client = APIClient()
+#         self.client.login(username="test", password="password")
 
+        
         # override test client
         self.client = APIClient()
         token = Token.objects.create(user=self.u1)
