@@ -22,7 +22,11 @@ from django.views.decorators.vary import vary_on_headers, vary_on_cookie
 
 from rest_framework.exceptions import PermissionDenied
 
+# from rest_framework.throttling import ScopedRateThrottle
+
 class PostViewSet(viewsets.ModelViewSet):
+    # throttle_classes = [ScopedRateThrottle]
+    # throttle_scope = "post_api"
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
 
@@ -47,6 +51,8 @@ class PostViewSet(viewsets.ModelViewSet):
         return super(PostViewSet, self).list(*args, **kwargs)
 
 class UserDetail(generics.RetrieveAPIView):
+    # throttle_classes = [ScopedRateThrottle]
+    # throttle_scope = "user_api"
     lookup_field = "email"
     queryset = User.objects.all()
     serializer_class = UserSerializer  
