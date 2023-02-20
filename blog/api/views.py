@@ -36,7 +36,8 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
 
     def get_queryset(self):
-        # applying user filtering rules
+        # applying user filtering rules 
+        # when appling rules remmember to change cache decrotor so that the rules will be respected correctly
         if self.request.user.is_anonymous:
             # published only
             queryset = self.queryset.filter(published_at__lte=timezone.now())
