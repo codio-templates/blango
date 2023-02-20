@@ -41,8 +41,8 @@ class PostViewSet(viewsets.ModelViewSet):
         if self.request.user.is_anonymous:
             # published only
             queryset = self.queryset.filter(published_at__lte=timezone.now())
-
-        elif not self.request.user.is_staff:
+        # or self.request.GET.get("all") == "true":
+        elif not self.request.user.is_staff :
             # allow all
             queryset = self.queryset
         else:
