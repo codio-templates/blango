@@ -228,7 +228,6 @@ class Dev(Configuration):
     ]'''
 
     INTERNAL_IPS = ["192.168.11.179"]
-
 class Prod(Dev):
     DEBUG = False
     SECRET_KEY = values.SecretValue()
