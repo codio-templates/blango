@@ -59,6 +59,7 @@ class Dev(Configuration):
       'drf_yasg',
       'rest_framework',
       'rest_framework.authtoken',
+      'django_filters',
       
 
       
@@ -87,6 +88,13 @@ class Dev(Configuration):
             # "post_api": "50/minute",
             # "user_api": "2000/day"
     },
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+        "PAGE_SIZE": 100,
+
+    "DEFAULT_FILTER_BACKENDS": [
+            "django_filters.rest_framework.DjangoFilterBackend",
+            "rest_framework.filters.OrderingFilter",
+        ],    
 }
   SWAGGER_SETTINGS = {
         "SECURITY_DEFINITIONS": {
