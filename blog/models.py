@@ -7,6 +7,8 @@ from django.conf import settings
 
 from django.contrib.contenttypes.fields import GenericRelation
 
+from versatileimagefield.fields import VersatileImageField, PPOIField
+
 class Tag(models.Model):
     value = models.TextField(max_length=100, unique=True)
     #posts = tags fix me
@@ -50,6 +52,13 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, related_name="posts")
 
     comments = GenericRelation(Comment)
+
+    #image fields
+    hero_image = VersatileImageField(
+        upload_to="hero_images", ppoi_field="ppoi", null=True, blank=True
+    )
+    ppoi = PPOIField(null=True, blank=True)
+    
 
     def __str__(self):
         return self.title

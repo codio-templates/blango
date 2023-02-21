@@ -65,10 +65,14 @@ class Dev(Configuration):
         'rest_framework',
         'rest_framework.authtoken',
         'django_filters',
+        'versatileimagefield',
 
 
 
     ]
+    
+    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_URL = "/media/"
 
     SIMPLE_JWT = {
         "ACCESS_TOKEN_LIFETIME": timedelta(days=1),

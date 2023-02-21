@@ -29,6 +29,13 @@ django-filter
 
 djangorestframework-simplejwt PyJWT==1.7.1
 
+django-versatileimagefield
+
+#Windows
+#libmagic
+#macOS
+#python-magic-bin==0.4.1
+
 # If you want to use MySQL, and are not running on PythonAnywhere,
 # uncomment the following line you might need to install pre-requisite
 # libraries before mysqlclient will work - instructions are at

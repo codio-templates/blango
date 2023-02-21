@@ -13,6 +13,20 @@
         {{ post.content|safe }}
     </div>
 {% endrow %}
+<!-- {% if post.hero_image %}
+    {% row %}
+        {% col %}
+            <img class="img-fluid" src="{{ post.hero_image.url }}">
+        {% endcol %}
+    {% endrow %}
+{% endif %} -->
+{% if post.hero_image %}
+    {% row %}
+        {% col %}
+            <img class="img-fluid" src="{{ post.hero_image.url }}">
+        {% endcol %}
+    {% endrow %}
+{% endif %}
 <br>
 <h2>all Comments</h2>
     <div>
