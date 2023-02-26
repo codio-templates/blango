@@ -16,8 +16,11 @@ class UserSustainedThrottle(UserRateThrottle):
 
 class UserBurstThrottle(UserRateThrottle):
     scope = "user_burst"
+     
 
 
+'''
 class RandomRateThrottle(throttling.BaseThrottle):
     def allow_request(self, request, view):
-        return random.randint(1, 10) != 1    
+        return random.randint(1, 10) != 1 
+'''     

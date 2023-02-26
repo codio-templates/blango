@@ -1,3 +1,4 @@
+
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -46,4 +47,9 @@ urlpatterns += [
         name="schema-swagger-ui",
     ),
     path("", include(router.urls)),
+    path(
+        "posts/by-time/<str:period_name>/",
+        PostViewSet.as_view({"get": "list"}),
+        name="posts-by-time",
+    ),    
 ]
