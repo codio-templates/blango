@@ -6,6 +6,9 @@
     {% row "border-bottom" %}
         {% col "border-bottom" %}
             <h3>{{ post.title }}</h3>
+            {% if post.hero_image %}
+                <img src="{{ post.hero_image.thumbnail.100x100.url }}"/>
+            {% endif %}
             {% include "blog/post-byline.html" %}
             <p>{{ post.summary }}</p>
             <p>
