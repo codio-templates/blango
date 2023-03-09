@@ -1,27 +1,50 @@
-for(let i = 0; i < 10; i += 1) {
-  console.log('for loop i: ' + i)
+class Greeter {
+  constructor (name) {
+    this.name = name
+  }
+
+  getGreeting () {
+    if (this.name === undefined) {
+      return 'Hello, no name'
+    }
+
+    return 'Hello, ' + this.name
+  }
+
+  showGreeting (greetingMessage) {
+    console.log(greetingMessage)
+  }
+
+  greet () {
+    this.showGreeting(this.getGreeting())
+  }
 }
 
-let j = 0
-while(j < 10) {
-  console.log('while loop j: ' + j)
-  j += 1
+const g = new Greeter('Redha Alkhulaqi')  // Put your name here if you like
+g.greet()
+
+
+class DelayedGreeter extends Greeter {
+  delay = 2000
+
+  constructor (name, delay) {
+    super(name)
+    if (delay !== undefined) {
+      this.delay = delay
+    }
+  }
+
+  greet () {
+    setTimeout(
+      () => {
+        this.showGreeting(this.getGreeting())
+      }, this.delay
+    )
+  }
 }
 
-let k = 10
+const dg2 = new DelayedGreeter('Redha 2 Seconds')
+dg2.greet()
 
-do {
-  console.log('do while k: ' + k)
-} while(k < 10)
-
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-numbers.forEach((value => {
-  console.log('For each value ' + value)
-}))
-
-const doubled = numbers.map(value => value * 2)
-
-console.log('Here are the doubled numbers')
-
-console.log(doubled)
+const dg1 = new DelayedGreeter('Redha 1 Second', 1000)
+dg1.greet()
