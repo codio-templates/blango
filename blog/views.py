@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from blog.models import Post
@@ -44,4 +45,6 @@ def post_detail(request, slug):
   
 
 def post_table(request):
-    return render(request, "blog/post-table.html")
+    return render(
+        request, "blog/post-table.html", {"post_list_url": reverse("post-list")}
+    )

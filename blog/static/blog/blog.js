@@ -1,3 +1,4 @@
+
 class PostRow extends React.Component {
   render () {
     const post = this.props.post
@@ -23,26 +24,34 @@ class PostRow extends React.Component {
   }
 }
 
+
 class PostTable extends React.Component {
-  state = {
-    dataLoaded: true,
-    data: {
-      results: [
-        {
-          id: 15,
-          tags: [
-            'django', 'react'
-          ],
-          'hero_image': {
-            'thumbnail': '/media/__sized__/hero_images/djangon__python_FtEcy0D-thumbnail-100x100.png',
-            'full_size': '/media/hero_images/djangon__python_FtEcy0D.png'
-          },
-          title: 'Test Post',
-          slug: 'test-post',
-          summary: 'A test post, created for Django/React.'
+    state = {
+    dataLoaded: false,
+    data: null
+  }
+
+  componentDidMount () {
+    fetch(this.props.url).then(response => {
+      if (response.status !== 200) {
+        throw new Error('Invalid status from server: ' + response.statusText)
+      }
+
+      return response.json()
+    }).then(data => {
+      this.setState({
+        dataLoaded: true,
+        data: data
+      })
+    }).catch(e => {
+      console.error(e)
+      this.setState({
+        dataLoaded: true,
+        data: {
+          results: []
         }
-      ]
-    }
+      })
+    })
   }
 
   render () {
@@ -79,8 +88,32 @@ class PostTable extends React.Component {
   }
 }
 
+
+class ChildButton extends React.Component {
+  render () {
+    return <button onClick={ () => { this.props.parentCallback('foo') } }>Click Me</button>
+  }
+}
+
+class ParentContainer extends React.Component {
+  aCallback(val) {
+    // will log 'foo' when child is clicked
+    console.log(val)
+  }
+
+  render () {
+    return <div>
+      <ChildButton parentCallback={ (arg) => { this.aCallback(arg) } } />
+    </div>
+  }
+}
+
+
 const domContainer = document.getElementById('react_root')
 ReactDOM.render(
-  React.createElement(PostTable),
+  React.createElement(
+    PostTable,
+    {url: postListUrl}
+  ),
   domContainer
 )
