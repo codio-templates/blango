@@ -28,6 +28,8 @@ class Dev(Configuration):
   SECRET_KEY = "django-insecure-ym=d)ft4%)xiukqr&tgstl6i2091+x_#&o%*%n6g^epgy(bpd6"
   
   AUTH_USER_MODEL = "blango_auth.User"
+  EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+  ACCOUNT_ACTIVATION_DAYS = 7
   # SECURITY WARNING: don't run with debug turned on in production!
   DEBUG = True
 
