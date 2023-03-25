@@ -26,7 +26,8 @@ class Dev(Configuration):
 
   # SECURITY WARNING: keep the secret key used in production secret!
   SECRET_KEY = "django-insecure-ym=d)ft4%)xiukqr&tgstl6i2091+x_#&o%*%n6g^epgy(bpd6"
-
+  
+  AUTH_USER_MODEL = "blango_auth.User"
   # SECURITY WARNING: don't run with debug turned on in production!
   DEBUG = True
 
@@ -49,6 +50,7 @@ class Dev(Configuration):
       'django.contrib.sessions',
       'django.contrib.messages',
       'django.contrib.staticfiles',
+      'blango_auth',
       'blog',
       "crispy_forms",
       "crispy_bootstrap5",
