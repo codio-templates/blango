@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load blog_extras %}
 {% block content %}
+
+
 <h2>{{ post.title }}</h2>
 {% row %}
     {% col %}
@@ -17,4 +19,6 @@
         {% recent_posts post %}
     {% endcol %}
 {% endrow %}
+
+{% include "blog/post-comments.html" %}
 {% endblock %}
