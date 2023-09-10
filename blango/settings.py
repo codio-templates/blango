@@ -61,6 +61,7 @@ class Dev(Configuration):
 
     INSTALLED_APPS = [
         'blango_auth',
+        'rest_framework',
         'blog',
         'django.contrib.admin',
         'django.contrib.auth',
