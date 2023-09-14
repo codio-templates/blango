@@ -62,6 +62,7 @@ class Dev(Configuration):
     INSTALLED_APPS = [
         'blango_auth',
         'rest_framework',
+        'rest_framework.authtoken',
         'blog',
         'django.contrib.admin',
         'django.contrib.auth',
@@ -198,6 +199,13 @@ class Dev(Configuration):
         'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
       ]
 
+    REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        ]
+    }
 
 
 class Prod(Dev):
