@@ -19,6 +19,8 @@ class Comment(models.Model):
 class Tag(models.Model):
     value = models.TextField(max_length=100, unique=True)
 
+    ordering = ["value"]
+
     def __str__(self):
         return self.value
 
