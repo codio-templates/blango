@@ -56,6 +56,9 @@ class Dev(Configuration):
 
 
 
+    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_URL = "/media/"
+
 
 
 
@@ -64,6 +67,7 @@ class Dev(Configuration):
     INSTALLED_APPS = [
         'blango_auth',
         'django_filters',
+        'versatileimagefield',
         'rest_framework',
         'rest_framework.authtoken',
         'drf_yasg',
