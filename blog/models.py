@@ -13,23 +13,23 @@ class Tag(models.Model):
 
 class Comment(models.Model):
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField(default="content")
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
+    object_id = models.PositiveIntegerField(default=1)
     content_object = GenericForeignKey("content_type", "object_id")
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
 
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, default =1)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True)
-    title = models.TextField(max_length=100)
-    slug = models.SlugField()
-    summary = models.TextField(max_length=500)
-    content = models.TextField()
+    title = models.TextField(max_length=100, default="title")
+    slug = models.SlugField(default = "test")
+    summary = models.TextField(max_length=500, default="summary")
+    content = models.TextField(default="content")
     tags = models.ManyToManyField(Tag, related_name="posts")
     comments = GenericRelation(Comment)
 
