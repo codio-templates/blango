@@ -4,10 +4,14 @@ from django.utils.html import format_html
 
 from django.contrib.auth import get_user_model
 user_model = get_user_model()
+import logging
 
+logger = logging.getLogger(__name__)
 
 @register.filter
 def author_details(author, current_user):
+    logger.debug("Loaded %d recent posts for post %d", len(author), author.id)
+
     if not isinstance(author, user_model):
         # return empty string as safe default
         return ""
