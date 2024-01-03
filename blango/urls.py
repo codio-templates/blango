@@ -50,14 +50,9 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("accounts/", include("allauth.urls")),
   path("accounts/", include("allauth.urls")),
-  path("api/v1/", include("blog.api_urls")),
-
-
-
-
-
-
-
+  # for function based view below
+  # path("api/v1/", include("blog.api_urls")),
+  path("api/v1/", include("blog.api.urls")),
     # path("post/<slug>/", blog.views.post_detail, name="blog-post-detail")
 ]
 
