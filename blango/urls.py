@@ -30,6 +30,20 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+from django.urls import re_path
+
+
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Blango API",
+        default_version="v1",
+        description="API for Blango Blog",
+    ),
+    public=True,
+)
 
 
 
@@ -55,6 +69,26 @@ urlpatterns = [
   path("api/v1/", include("blog.api.urls")),
     # path("post/<slug>/", blog.views.post_detail, name="blog-post-detail")
 ]
+
+# urlpatterns += [
+#     # ...
+#     re_path(
+#         r"^swagger(?P<format>\.json|\.yaml)$",
+#         schema_view.without_ui(cache_timeout=0),
+#         name="schema-json",
+#     ),
+#     # ...
+# ]
+urlpatterns += [
+    # ...
+    path(
+        r"^swagger/$",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    # ...
+]
+
 
 
 if settings.DEBUG:
