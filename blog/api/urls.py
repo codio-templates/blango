@@ -57,6 +57,12 @@ urlpatterns += [
     path("auth/", include("rest_framework.urls")),
     # ... other patterns omitted
     path("", include(router.urls)),
+        path(
+        "posts/by-time/<str:period_name>/",
+        PostViewSet.as_view({"get": "list"}),
+        name="posts-by-time",
+    ),
+
     path("posts/", PostList.as_view(), name="api_post_list"),
     path("posts/<int:pk>", PostDetail.as_view(), name="api_post_detail"),
 ]
