@@ -6,6 +6,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 # Create your models here.
 class Tag(models.Model):
   value = models.TextField(max_length=100, unique=True)
+  class Meta:
+    ordering = ["value"]
 
   def __str__(self):
     return self.value

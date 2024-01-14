@@ -10,7 +10,7 @@ from blog.api.serializers import PostSerializer, UserSerializer, PostDetailSeria
 from rest_framework import generics, viewsets
 from django.db.models import Q
 from django.utils import timezone
-
+import django_filters.rest_framework
 
 from blog.api.serializers import (
     PostSerializer,
@@ -27,6 +27,8 @@ from django.views.decorators.vary import vary_on_headers, vary_on_cookie
 from rest_framework.exceptions import PermissionDenied
 from datetime import timedelta
 from django.http import Http404
+from blog.api.filters import PostFilterSet
+
 
 
 
@@ -56,11 +58,28 @@ class UserDetail(generics.RetrieveAPIView):
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    def posts(self, request, pk=None):
+      tag = self.get_object()
+      page = self.paginate_queryset(tag.posts)
+      if page is not None:
+          post_serializer = PostSerializer(
+              page, many=True, context={"request": request}
+          )
+          return self.get_paginated_response(post_serializer.data)
+      post_serializer = PostSerializer(
+          tag.posts, many=True, context={"request": request}
+      )
+      return Response(post_serializer.data)
+
 
 
 
 class PostViewSet(viewsets.ModelViewSet):
     permission_classes = [SessionAuthentication]
+    filterset_class = PostFilterSet
+    ordering_fields = ["published_at", "author", "title", "slug"]
+    # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    # filterset_fields = ["author", "tags"]
     queryset = Post.objects.all()
 
 
@@ -73,9 +92,7 @@ class PostViewSet(viewsets.ModelViewSet):
         # allow all
         queryset = self.queryset
       else:
-        queryset = self.queryset.filter(
-            Q(published_at__lte=timezone.now()) | Q(author=self.request.user)
-        )
+        queryset = self.queryset
 
       time_period_name = self.kwargs.get("period_name")
 
@@ -153,3 +170,17 @@ def list(self, *args, **kwargs):
 def retrieve(self, *args, **kwargs):
   return super(TagViewSet, self).retrieve(*args, **kwargs)
 
+
+def mine(self, request):
+    if request.user.is_anonymous:
+        raise PermissionDenied("You must be logged in to see which Posts are yours")
+    posts = self.get_queryset().filter(author=request.user)
+
+    page = self.paginate_queryset(posts)
+
+    if page is not None:
+        serializer = PostSerializer(page, many=True, context={"request": request})
+        return self.get_paginated_response(serializer.data)
+
+    serializer = PostSerializer(posts, many=True, context={"request": request})
+    return Response(serializer.data)
