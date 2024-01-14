@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from configurations import Configuration
 from configurations import values
+from datetime import timedelta
 
 # class Dev:
 
@@ -195,6 +196,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication"
         # 'rest_framework.permissions.IsAuthenticated'
     ],
     # "DEFAULT_PERMISSION_CLASSES": [
@@ -231,3 +233,7 @@ SWAGGER_SETTINGS = {
     }
 }
 
+SIMPLE_JWT = {
+"ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+"REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
