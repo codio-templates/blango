@@ -19,6 +19,10 @@
                 ({{ post.content|wordcount }} words)
                 <a href="#">Read More</a>
             </p>
+            {% if post.hero_image %}
+            <img src="{{ post.hero_image.thumbnail.100x100.url }}"/>
+            {% endif %}
+
         </div>
     </div>
     {% endfor %}
