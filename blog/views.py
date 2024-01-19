@@ -9,6 +9,7 @@ from blog.models import Post
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
 from django.utils import timezone
+from django.urls import reverse
 
 # Create your views here.
 
@@ -44,5 +45,11 @@ def get_ip(request):
   from django.http import HttpResponse
   return HttpResponse(request.META['REMOTE_ADDR'])
 
+# def post_table(request):
+#     return render(request, "blog/post-table.html")
+
+
 def post_table(request):
-    return render(request, "blog/post-table.html")
+    return render(
+        request, "blog/post-table.html", {"post_list_url": reverse("post-list")}
+    )
