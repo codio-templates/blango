@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags blog_extras %}
+{% block title %}Log In to Blango{% endblock %}
+{% block content %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+
+
+        <form method="post" action="{% url "login" %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Log In</button>
+        <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+        <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+        <p>
+    <a href="{% url "google_login" %}">Log in with Google</a>
+</p>
+
+
+{% endblock %}
